@@ -3,7 +3,7 @@ import { table } from './utils/airtable.js';
 // import OwnsRecord from './middleware/OwnsRecord.js';
 
 export default async (req, res) => {
-    const { user } = await auth0.getSession(req);
+    // const { user } = await auth0.getSession(req);
     const { id, fields } = req.body;
 
     try {

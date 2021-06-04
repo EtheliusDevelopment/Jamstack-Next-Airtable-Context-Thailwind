@@ -1,14 +1,23 @@
   
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
+import Todo from '../components/Todo';
 import { table, minifyRecords } from './api/utils/airtable';
 // import Todo from '../compenents/Todo';
-// import { useEffect, useContext } from 'react';
-// import { TodosContext } from '../contexts/TodosContext';
+import { useEffect, useContext } from 'react';
+import { TodosContext } from '../contexts/TodosContext';
 // import TodoForm from '../compenents/TodoForm';
 // import auth0 from './api/utils/auth0';
 
 export default function Home({ initialTodos }) {
+
+  const {todos, setTodos} = useContext(TodosContext)
+
+  useEffect(() => {
+    setTodos(initialTodos)
+  }, [])
+
+  
     console.log(initialTodos);
     return (
         <div>
@@ -19,6 +28,14 @@ export default function Home({ initialTodos }) {
 
               <main>
                   <h1> JamStack Power </h1>
+                  <ul>
+                  {
+                    todos && 
+                      todos.map(todo => <Todo key={todo.id} todo={todo}/>)
+                    
+                    
+                  }
+                  </ul>
               </main>
     </div>
       );
